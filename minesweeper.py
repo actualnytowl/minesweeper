@@ -3,7 +3,8 @@ from random import *
 from tkinter import messagebox
 
 mw = Tk()
-fcount=fcount = Label(mw, text = f"FLAGS ={0}")
+mw.title("MINESWEEPER 101")
+fcount= Label(mw, text = f"FLAGS ={0}")
 
 mi_bomb = PhotoImage(file = r"C:\Users\Sagar Annaji\Desktop\minesweeper-master\Images\bomb.png").subsample(2,2)
 mi_blank  = PhotoImage(file = r"C:\Users\Sagar Annaji\Desktop\minesweeper-master\Images\blank.png").subsample(8,8)
@@ -233,11 +234,11 @@ def startgame(size =10, bombs = 10):
     identified_bombs = 0
 
     menubar = Menu(mw)
-    #menubar.add_command(label="Restart", command=startgame)
+    menubar.add_command(label="Restart", command=lambda size=boardsize, bombs=no_of_mines_to_be_placed: startgame(size, bombs))
     difficulty = Menu(tearoff=0)
-    difficulty.add_command(label="Easy", command=lambda size=10, bombs=10: startgame(size, bombs))
-    difficulty.add_command(label="Medium", command=lambda size=13, bombs=30: startgame(size, bombs))
-    difficulty.add_command(label="Hardcore AF", command=lambda size=16, bombs=69: startgame(size, bombs))
+    difficulty.add_command(label="Easy 10x10 bombs = 10", command=lambda size=10, bombs=10: startgame(size, bombs))
+    difficulty.add_command(label="Medium 14x14 bombs = 30", command=lambda size=13, bombs=30: startgame(size, bombs))
+    difficulty.add_command(label="Hardcore AF 16x16 bombs = 69", command=lambda size=16, bombs=69: startgame(size, bombs))
     menubar.add_cascade(label="Difficulty", menu=difficulty)
     mw.config(menu=menubar)
     fcount.config(text=f"FLAGS ={flags_placed}")
